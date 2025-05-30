@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.github.vkpro'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// Add the main class configuration for the application plugin
+application {
+    mainClass = 'com.github.vkpro.Main'
+}
+
+// Configure the JAR manifest to include the Main-Class attribute
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'com.github.vkpro.Main'
+        )
+    }
+}
+
+// Configure the run task to allow console input
+run {
+    standardInput = System.in
+}
